@@ -1,0 +1,26 @@
+\begin{table}[htbp]
+\caption{Ablation Study: Impact of Feature Normalization, Kernel Formulation, and Head Selection on MobileNetV2 Penultimate Embeddings}
+\label{tab:ablation_study}
+\centering
+\footnotesize
+\begin{tabular}{llccc}
+\toprule
+\textbf{Ablated Component} & \textbf{Variant Tested} & \textbf{Test Acc (\%)} & \textbf{Macro $F_1$ (\%)} & \textbf{Latency (ms)} \\
+\midrule
+\multirow{3}{*}{\textbf{Feature Scaling}} & Raw Features (No Scaling) & 96.64 & 95.78 & 0.27 \\
+ & MinMax $[0, 1]$ & 96.96 & 96.04 & 0.27 \\
+ & \textbf{Standardization ($z$-score)} & \textbf{97.00} & \textbf{96.27} & \textbf{0.27} \\
+\midrule
+\multirow{4}{*}{\textbf{SVM Kernel}} & Linear Hyperplane & 95.96 & 95.02 & 0.21 \\
+ & Polynomial ($d=3$) & 96.12 & 95.35 & 0.24 \\
+ & Sigmoid & 95.28 & 94.47 & 0.26 \\
+ & \textbf{Radial Basis Function (RBF)} & \textbf{97.00} & \textbf{96.27} & \textbf{0.27} \\
+\midrule
+\multirow{5}{*}{\textbf{Decision Head}} & Softmax (End-to-End Baseline) & 94.57 & 93.57 & 87.78 \\
+ & Gaussian Naive Bayes & 93.70 & 92.31 & 0.01 \\
+ & Random Forest (200 Trees) & 95.80 & 95.08 & 0.02 \\
+ & $k$-Nearest Neighbors ($k=5$) & 96.03 & 95.46 & 0.46 \\
+ & \textbf{SVM (RBF Kernel)} & \textbf{97.00} & \textbf{96.27} & \textbf{0.27} \\
+\bottomrule
+\end{tabular}
+\end{table}

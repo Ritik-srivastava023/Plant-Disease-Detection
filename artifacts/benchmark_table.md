@@ -1,0 +1,5 @@
+| Model                       | Paradigm           |   Params (M) |   Size (MB) |   CPU Latency (ms/img) |   Test Accuracy (%) |   Macro F1 (%) |   Weighted F1 (%) |   Macro OvR AUC |
+|:----------------------------|:-------------------|-------------:|------------:|-----------------------:|--------------------:|---------------:|------------------:|----------------:|
+| Custom CNN (GAP + BN)       | Scratch Baseline   |        0.113 |        0.48 |                  18.46 |               68.12 |          63.03 |             67.27 |          0.9576 |
+| MobileNetV2 (Two-Stage)     | Edge Lightweight   |        2.429 |       11.51 |                  87.78 |               94.57 |          93.57 |             94.48 |          0.9987 |
+| EfficientNet-B0 (Two-Stage) | High-Capacity SOTA |        4.221 |       17.5  |                 151.89 |               95.7  |          94.94 |             95.74 |          0.9991 |

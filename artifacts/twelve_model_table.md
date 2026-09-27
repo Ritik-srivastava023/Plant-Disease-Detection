@@ -1,0 +1,14 @@
+| Model                | Backbone       | Classifier   |   Train Acc (%) |   Test Acc (%) |   Macro Precision (%) |   Macro Recall (%) |   Macro F1 (%) |   Weighted F1 (%) |   Train Time (s) |
+|:---------------------|:---------------|:-------------|----------------:|---------------:|----------------------:|-------------------:|---------------:|------------------:|-----------------:|
+| CNN + SVM            | CNN            | SVM          |           98.58 |          97.32 |                 96.83 |              96.69 |          96.75 |             97.31 |             0.94 |
+| CNN + KNN            | CNN            | KNN          |          100    |          96.93 |                 96.81 |              96.56 |          96.65 |             96.92 |             0    |
+| CNN + RF             | CNN            | RF           |           99.85 |          96.06 |                 95.87 |              95.05 |          95.41 |             96.03 |             1.96 |
+| CNN + NB             | CNN            | NB           |           69.96 |          68.44 |                 71.74 |              71.84 |          64.79 |             70.94 |             0.01 |
+| MobileNetV2 + SVM    | MobileNetV2    | SVM          |           99.24 |          97    |                 96.73 |              95.88 |          96.27 |             96.97 |             1.52 |
+| MobileNetV2 + KNN    | MobileNetV2    | KNN          |          100    |          96.03 |                 95.84 |              95.25 |          95.46 |             95.99 |             0    |
+| MobileNetV2 + RF     | MobileNetV2    | RF           |           99.96 |          95.8  |                 96.03 |              94.34 |          95.08 |             95.75 |             2.11 |
+| MobileNetV2 + NB     | MobileNetV2    | NB           |           96.39 |          93.7  |                 92.59 |              92.08 |          92.31 |             93.67 |             0.02 |
+| EfficientNetB0 + SVM | EfficientNetB0 | SVM          |           99.59 |          96.61 |                 95.86 |              96.06 |          95.92 |             96.6  |             0.92 |
+| EfficientNetB0 + KNN | EfficientNetB0 | KNN          |          100    |          96.22 |                 95.49 |              95.65 |          95.52 |             96.2  |             0    |
+| EfficientNetB0 + RF  | EfficientNetB0 | RF           |           99.97 |          95.8  |                 95.17 |              94.76 |          94.93 |             95.78 |             1.87 |
+| EfficientNetB0 + NB  | EfficientNetB0 | NB           |           97.7  |          93.99 |                 92.44 |              92.41 |          92.38 |             94.02 |             0.01 |

@@ -1,0 +1,6 @@
+Classifier Head,Train Acc (%),Test Acc (%),Macro Precision (%),Macro Recall (%),Macro F1 (%),Weighted F1 (%),Train Time (s),Inference (ms/img)
+Softmax (End-to-End Baseline),97.58,94.57,94.8,92.9,93.57,94.48,-,-
+SVM (RBF),99.24,97.0,96.73,95.88,96.27,96.97,0.97,0.269
+KNN (k=5),100.0,96.03,95.84,95.25,95.46,95.99,0.0,0.487
+Random Forest,99.96,95.8,96.03,94.34,95.08,95.75,1.99,0.015
+Gaussian NB,96.39,93.7,92.59,92.08,92.31,93.67,0.01,0.012

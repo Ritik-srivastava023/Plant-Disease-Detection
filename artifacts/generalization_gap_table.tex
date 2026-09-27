@@ -1,0 +1,27 @@
+\begin{table*}[htbp]
+\caption{Classification Error Rates and Generalization Gaps Across All 15 Model Configurations}
+\label{tab:generalization_gap}
+\centering
+\small
+\begin{tabular}{lllcccc}
+\toprule
+\textbf{Backbone} & \textbf{Head Classifier} & \textbf{Model Type} & \textbf{Train Error (\%)} & \textbf{Test Error (\%)} & \textbf{Gen. Gap ($\Delta$ \%)} & \textbf{Test Acc (\%)} \\
+\midrule
+Custom CNN & Softmax & Baseline End-to-End & 16.80 & 31.88 & 15.08 & 68.12 \\
+MobileNetV2 & Softmax & Baseline End-to-End & 2.42 & 5.43 & 3.01 & 94.57 \\
+EfficientNet-B0 & Softmax & Baseline End-to-End & 1.58 & 4.30 & 2.72 & 95.70 \\
+CNN & SVM & Deep Hybrid Head & 1.42 & 2.68 & 1.26 & 97.32 \\
+CNN & KNN & Deep Hybrid Head & 0.00 & 3.07 & 3.07 & 96.93 \\
+CNN & RF & Deep Hybrid Head & 0.15 & 3.94 & 3.79 & 96.06 \\
+CNN & NB & Deep Hybrid Head & 30.04 & 31.56 & 1.52 & 68.44 \\
+MobileNetV2 & SVM & Deep Hybrid Head & 0.76 & 3.00 & 2.24 & 97.00 \\
+MobileNetV2 & KNN & Deep Hybrid Head & 0.00 & 3.97 & 3.97 & 96.03 \\
+MobileNetV2 & RF & Deep Hybrid Head & 0.04 & 4.20 & 4.16 & 95.80 \\
+MobileNetV2 & NB & Deep Hybrid Head & 3.61 & 6.30 & 2.69 & 93.70 \\
+EfficientNetB0 & SVM & Deep Hybrid Head & 0.41 & 3.39 & 2.98 & 96.61 \\
+EfficientNetB0 & KNN & Deep Hybrid Head & 0.00 & 3.78 & 3.78 & 96.22 \\
+EfficientNetB0 & RF & Deep Hybrid Head & 0.03 & 4.20 & 4.17 & 95.80 \\
+EfficientNetB0 & NB & Deep Hybrid Head & 2.30 & 6.01 & 3.71 & 93.99 \\
+\bottomrule
+\end{tabular}
+\end{table*}

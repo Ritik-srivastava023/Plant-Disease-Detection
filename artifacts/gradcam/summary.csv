@@ -1,0 +1,5 @@
+file,status,true_label,predicted_label,confidence
+1_correct.png,correct,Tomato__Target_Spot,Tomato__Target_Spot,0.7983193
+2_correct.png,correct,Potato___Early_blight,Potato___Early_blight,0.99999523
+3_incorrect.png,incorrect,Tomato_Early_blight,Tomato_Bacterial_spot,0.91985816
+4_incorrect.png,incorrect,Potato___Early_blight,Tomato_healthy,0.7799872
