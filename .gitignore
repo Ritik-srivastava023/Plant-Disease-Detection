@@ -2,3 +2,6 @@ venv
 PlantVillage
 mobilenet_model.h5
 plant_disease_model.h5
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\caption{Rigorous 10-Seed Repeated Statistical Validation on Fixed Test Split ($N=3{,}096$ Images): Mean $\pm$ Standard Deviation, 95\% Student's $t$ Confidence Intervals, and Hypothesis Testing.}
+\label{tab:repeated_seed_statistical_validation}
+\centering
+\footnotesize
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Model Architecture} & \textbf{Head Classifier} & \textbf{Accuracy (\%)} & \textbf{95\% CI (Acc)} & \textbf{Macro F1 (\%)} & \textbf{Error Rate (\%)} & \textbf{Latency (ms)} \\
+\midrule
+Custom CNN + SVM & SVM (RBF) & $97.13 \pm 0.10$ & $[97.07, 97.20]$ & $96.52 \pm 0.20$ & 2.87 & 0.495 \\
+MobileNetV2 + SVM & SVM (RBF) & $96.96 \pm 0.10$ & $[96.89, 97.03]$ & $96.14 \pm 0.19$ & 3.04 & 0.512 \\
+Custom CNN + KNN & KNN (k=5) & $96.80 \pm 0.07$ & $[96.74, 96.85]$ & $96.32 \pm 0.18$ & 3.20 & 0.110 \\
+EfficientNet-B0 + SVM & SVM (RBF) & $96.62 \pm 0.10$ & $[96.55, 96.70]$ & $95.84 \pm 0.17$ & 3.38 & 0.475 \\
+EfficientNet-B0 + Softmax & Softmax & $96.25 \pm 0.11$ & $[96.17, 96.33]$ & $95.42 \pm 0.17$ & 3.75 & 0.033 \\
+\midrule
+\multicolumn{7}{l}{\textbf{Paired Comparison:} Custom CNN + SVM vs. MobileNetV2 + SVM Across $N=10$ Seeds} \\
+\multicolumn{7}{l}{Mean Difference $\bar{D} = +0.174\%$ ($s_D = 0.132\%$), Cohen's $d_z = 1.32$ (Very Large Effect)} \\
+\multicolumn{7}{l}{Paired $t$-test: $t = 4.18$, $p = 0.0024$ (Significant, $p < 0.01$); Wilcoxon Signed-Rank Test: $W = 0.0$, $p = 0.0039$} \\
+\bottomrule
+\end{tabular}
+\end{table*}

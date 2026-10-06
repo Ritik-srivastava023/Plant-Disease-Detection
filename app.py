@@ -544,22 +544,112 @@ if input_image is not None:
 # Collapsible Research Benchmark Section
 # -----------------------------------------------------------------------------
 st.write("---")
-with st.expander("📊 IEEE Research Paper Benchmark & Model Ablation Overview"):
+with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Figures - Springer/IEEE Grade)", expanded=False):
     st.markdown("""
-    ### Experimental Comparison Across 15 Architecture Configurations
-    Evaluated on the untouched **PlantVillage** test split ($N = 3,096$, Seed 42).
+    ### Comprehensive Benchmark Across 15 Architecture Configurations
+    Evaluated under a strictly controlled, leakage-free protocol on the untouched **PlantVillage** test split ($N = 3,096$, Seed 42).
+    Comparing 3 feature backbones (**Custom CNN**, **MobileNetV2**, **EfficientNet-B0**) paired with 5 decision heads (**Softmax**, **RBF SVM**, **KNN**, **Random Forest**, **Gaussian NB**).
     """)
-    twelve_path = ARTIFACTS_DIR / "twelve_model_comparison.csv"
-    if twelve_path.exists():
-        benchmark_df = pd.read_csv(twelve_path)
-        st.dataframe(
-            benchmark_df[["Model", "Backbone", "Classifier", "Test Acc (%)", "Macro F1 (%)", "Inference Latency (ms/img)"]],
-            use_container_width=True
-        )
-    st.markdown("""
-    > **Key Architectural Insight:**
-    > While classical end-to-end models with linear Softmax heads encounter representational bottlenecks on edge hardware,
-    > routing deep penultimate features (128-D) through non-linear margin classifiers (RBF SVM) elevates diagnostic accuracy
-    > to **97.00% - 97.32%** while slashing inference latency down to $<0.3$ ms.
-    """)
+    
+    b_tab1, b_tab2, b_tab3, b_tab4, b_tab5, b_tab6, b_tab7, b_tab8, b_tab9 = st.tabs([
+        "📋 Full Master Table",
+        "📊 4-Metric Grid (Fig 1)",
+        "📈 Trajectory & Tri-Metric (Figs 2 & 3)",
+        "⚡ Pareto & Radar (Figs 4 & 6)",
+        "🎯 Confusion Matrices (Fig 7)",
+        "📉 ROC & PR Curves (Fig 8)",
+        "🧬 t-SNE & Crop Breakdown (Figs 9 & 10)",
+        "📐 Statistical Error & SD (Fig 12)",
+        "🧪 10-Seed Validation & Ablation (Figs 13 & 14)"
+    ])
+    
+    metrics_path = ARTIFACTS_DIR / "all_15_models_metrics.csv"
+    stats_path = ARTIFACTS_DIR / "statistical_error_metrics.csv"
+    hypo_path = ARTIFACTS_DIR / "statistical_hypothesis_tests.csv"
+    fig_dir = ARTIFACTS_DIR / "figures"
+    
+    with b_tab1:
+        if metrics_path.exists():
+            full_df = pd.read_csv(metrics_path)
+            st.dataframe(full_df, use_container_width=True)
+            st.download_button(
+                "⬇️ Download Full 15-Model Benchmark CSV",
+                full_df.to_csv(index=False),
+                file_name="phytoai_15_models_benchmark.csv",
+                mime="text/csv"
+            )
+        else:
+            st.warning("Master metrics CSV not found.")
+            
+        st.markdown("""
+        > **Key Architectural Takeaway:**
+        > While classical end-to-end models with linear Softmax heads encounter representational bottlenecks on edge hardware,
+        > routing penultimate features through non-linear margin classifiers (RBF SVM) elevates diagnostic accuracy
+        > to **97.00% - 97.32%** while slashing inference latency down to $<0.3$ ms.
+        """)
+        
+    with b_tab2:
+        fig1_path = fig_dir / "fig1_all_models_four_metrics.png"
+        if fig1_path.exists():
+            st.image(str(fig1_path), caption="Figure 1: Cross-Model Comparison Across 4 Core Metrics (Accuracy, Precision, Recall, F1)", use_column_width=True)
+
+    with b_tab3:
+        fig2_path = fig_dir / "fig2_macro_vs_weighted_trajectory.png"
+        if fig2_path.exists():
+            st.image(str(fig2_path), caption="Figure 2: Macro vs. Weighted Metric Trajectory Across All 15 Models (Mirroring Springer 2025 Figs 5 & 6)", use_column_width=True)
+        fig3_path = fig_dir / "fig3_tri_metric_precision_recall_f1.png"
+        if fig3_path.exists():
+            st.image(str(fig3_path), caption="Figure 3: Tri-Metric Clustered Bar Evaluation (Precision, Recall, F1 - Mirroring Springer 2025 Fig 8)", use_column_width=True)
+
+    with b_tab4:
+        fig4_path = fig_dir / "fig4_pareto_accuracy_latency_tradeoff.png"
+        if fig4_path.exists():
+            st.image(str(fig4_path), caption="Figure 4: Pareto Efficiency Frontier (Test Accuracy vs. Log-Scale CPU Latency vs. Model Parameters)", use_column_width=True)
+        fig6_path = fig_dir / "fig6_radar_architecture_comparison.png"
+        if fig6_path.exists():
+            st.image(str(fig6_path), caption="Figure 6: 5-Axis Architectural Radar Profile", use_column_width=True)
+
+    with b_tab5:
+        fig7_path = fig_dir / "fig7_confusion_matrix_comparison.png"
+        if fig7_path.exists():
+            st.image(str(fig7_path), caption="Figure 7: Dual Normalized Confusion Matrices (MobileNetV2 Softmax vs. MobileNetV2 + RBF SVM)", use_column_width=True)
+        fig5_path = fig_dir / "fig5_per_class_f1_heatmap.png"
+        if fig5_path.exists():
+            st.image(str(fig5_path), caption="Figure 5: Per-Class F1 Heatmap Across 15 Disease Categories", use_column_width=True)
+
+    with b_tab6:
+        fig8_path = fig_dir / "fig8_multiclass_roc_pr_curves.png"
+        if fig8_path.exists():
+            st.image(str(fig8_path), caption="Figure 8: Multi-Class Macro ROC (One-vs-Rest) and Precision-Recall Curves (AUC & AP Annotated)", use_column_width=True)
+
+    with b_tab7:
+        fig9_path = fig_dir / "fig9_tsne_feature_space_comparison.png"
+        if fig9_path.exists():
+            st.image(str(fig9_path), caption="Figure 9: Latent Feature Manifold Separation in 128-D Space (t-SNE 2D Projections)", use_column_width=True)
+        fig10_path = fig_dir / "fig10_crop_wise_pathology_breakdown.png"
+        if fig10_path.exists():
+            st.image(str(fig10_path), caption="Figure 10: Crop-Wise Diagnostic Breakdown & Dangerous False Negative Risk Audit", use_column_width=True)
+        fig11_path = fig_dir / "fig11_ablation_kernels_and_normalization.png"
+        if fig11_path.exists():
+            st.image(str(fig11_path), caption="Figure 11: SVM Kernel Function & Feature Normalization Protocol Ablation", use_column_width=True)
+
+    with b_tab8:
+        fig12_path = fig_dir / "fig12_mean_error_and_std_deviation.png"
+        if fig12_path.exists():
+            st.image(str(fig12_path), caption="Figure 12: Mean Classification Error Rate & Probability Residuals with Standard Deviation Error Bars (B=1000 Bootstrap)", use_column_width=True)
+        if stats_path.exists():
+            st.markdown("#### **Empirical Statistical Uncertainty Table (Mean $\pm$ SD)**")
+            st.dataframe(pd.read_csv(stats_path), use_container_width=True)
+
+    with b_tab9:
+        fig13_path = fig_dir / "fig13_statistical_validation_effect_sizes.png"
+        if fig13_path.exists():
+            st.image(str(fig13_path), caption="Figure 13: 10-Seed Statistical Validation (95% CI, Paired Delta Acc, and Cohen's d Effect Size)", use_column_width=True)
+        fig14_path = fig_dir / "fig14_comprehensive_ablation_matrix.png"
+        if fig14_path.exists():
+            st.image(str(fig14_path), caption="Figure 14: Comprehensive Multi-Factor Ablation (PCA Dimensions, SVM C/Kernels, Normalization, Freeze vs Fine-Tune)", use_column_width=True)
+        if hypo_path.exists():
+            st.markdown("#### **Hypothesis Testing Results (Paired t-test, Wilcoxon, Cohen's d)**")
+            st.dataframe(pd.read_csv(hypo_path), use_container_width=True)
+
 

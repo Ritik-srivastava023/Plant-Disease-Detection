@@ -1,0 +1,6 @@
+Model,Backbone,Head,Seeds (N),Mean Acc (%),Acc SD (%),Acc 95% CI (±),Acc CI Lower (%),Acc CI Upper (%),Mean Macro F1 (%),F1 SD (%),F1 95% CI (±),Mean Error Rate (%),Error SD (%),Mean MAE,MAE SD,Mean Latency (ms),Latency SD (ms)
+Custom CNN + SVM,Custom CNN,SVM (RBF),10,97.13,0.096,0.069,97.07,97.2,96.52,0.195,0.139,2.87,0.096,0.052,0.00031,0.495,0.0157
+MobileNetV2 + SVM,MobileNetV2,SVM (RBF),10,96.96,0.097,0.069,96.89,97.03,96.14,0.188,0.134,3.04,0.097,0.0528,0.0003,0.512,0.0265
+Custom CNN + KNN,Custom CNN,KNN (k=5),10,96.8,0.074,0.053,96.74,96.85,96.32,0.179,0.128,3.2,0.074,0.0471,0.00045,0.11,0.1452
+EfficientNet-B0 + SVM,EfficientNet-B0,SVM (RBF),10,96.62,0.103,0.074,96.55,96.7,95.84,0.168,0.12,3.38,0.103,0.0545,0.00037,0.475,0.0082
+EfficientNet-B0 + Softmax,EfficientNet-B0,Softmax,10,96.25,0.113,0.081,96.17,96.33,95.42,0.167,0.119,3.75,0.113,0.0492,0.00098,0.033,0.0016

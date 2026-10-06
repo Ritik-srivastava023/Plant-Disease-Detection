@@ -1,0 +1,3 @@
+Weighting Scheme,Test Acc (%),Macro F1 (%),Minority Potato Healthy Recall (%)
+Uniform Loss (class_weight=None),97.03,96.4,86.96
+Inverse-Frequency (class_weight='balanced'),97.03,96.44,86.96

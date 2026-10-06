@@ -1,0 +1,6 @@
+Model,Backbone,Head,Test Acc (%),Acc SD (%),Mean Error Rate (%),Error SD (%),Macro F1 (%),F1 SD (%),Mean Absolute Error (MAE),MAE SD
+Custom CNN + SVM,Custom CNN,SVM (RBF),97.13,0.096,2.87,0.096,96.52,0.195,0.052,0.00031
+MobileNetV2 + SVM,MobileNetV2,SVM (RBF),96.96,0.097,3.04,0.097,96.14,0.188,0.0528,0.0003
+Custom CNN + KNN,Custom CNN,KNN (k=5),96.8,0.074,3.2,0.074,96.32,0.179,0.0471,0.00045
+EfficientNet-B0 + SVM,EfficientNet-B0,SVM (RBF),96.62,0.103,3.38,0.103,95.84,0.168,0.0545,0.00037
+EfficientNet-B0 + Softmax,EfficientNet-B0,Softmax,96.25,0.113,3.75,0.113,95.42,0.167,0.0492,0.00098

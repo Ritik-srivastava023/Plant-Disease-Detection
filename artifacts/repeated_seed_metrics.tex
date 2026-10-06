@@ -1,0 +1,11 @@
+\begin{tabular}{llllllrr}
+\toprule
+Model & Backbone & Head & Accuracy (Mean ± SD) & 95% CI (Acc) & Macro F1 (Mean ± SD) & Mean Error Rate (%) & Mean Latency (ms) \\
+\midrule
+Custom CNN + SVM & Custom CNN & SVM (RBF) & 97.13 ± 0.10% & [97.06, 97.20] & 96.52 ± 0.20% & 2.870000 & 0.495000 \\
+MobileNetV2 + SVM & MobileNetV2 & SVM (RBF) & 96.96 ± 0.10% & [96.89, 97.03] & 96.14 ± 0.19% & 3.040000 & 0.512000 \\
+Custom CNN + KNN & Custom CNN & KNN (k=5) & 96.80 ± 0.07% & [96.75, 96.85] & 96.32 ± 0.18% & 3.200000 & 0.110000 \\
+EfficientNet-B0 + SVM & EfficientNet-B0 & SVM (RBF) & 96.62 ± 0.10% & [96.55, 96.69] & 95.84 ± 0.17% & 3.380000 & 0.475000 \\
+EfficientNet-B0 + Softmax & EfficientNet-B0 & Softmax & 96.25 ± 0.11% & [96.17, 96.33] & 95.42 ± 0.17% & 3.750000 & 0.033000 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,5 @@
+Protocol,Test Acc (%),Macro F1 (%)
+None (Raw Embeddings),96.93,96.08
+"Min-Max [0, 1] Scaling",97.06,96.38
+Z-Score Standardization,97.03,96.4
+L2 Unit Sphere Normalization,97.09,96.33

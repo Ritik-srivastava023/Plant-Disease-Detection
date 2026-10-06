@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\caption{Statistical Error and Uncertainty Analysis: Mean Test Metrics with Standard Deviation ($\pm 1\sigma$, $B=1000$ Bootstrap Iterations) and Probability Mean Absolute Error (MAE).}
+\label{tab:statistical_errors}
+\centering
+\small
+\begin{tabular}{lllcccc}
+\toprule
+\textbf{Backbone} & \textbf{Classifier Head} & \textbf{Mean Test Acc. (\%)} & \textbf{Mean Error Rate (\%)} & \textbf{Macro F1 (\%)} & \textbf{Mean Absolute Error (MAE)} \\
+\midrule
+Custom CNN & Softmax & $68.10 \pm 0.83$ & $31.90 \pm 0.83$ & $62.94 \pm 0.87$ & $0.3503 \pm 0.4144$ \\
+Custom CNN & SVM (RBF) & $97.44 \pm 0.29$ & $2.56 \pm 0.29$ & $96.89 \pm 0.44$ & $0.0498 \pm 0.1486$ \\
+MobileNetV2 & Softmax & $94.57 \pm 0.42$ & $5.43 \pm 0.42$ & $93.53 \pm 0.61$ & $0.0667 \pm 0.1971$ \\
+MobileNetV2 & SVM (RBF) & $97.12 \pm 0.31$ & $2.88 \pm 0.31$ & $96.36 \pm 0.48$ & $0.0513 \pm 0.1546$ \\
+EfficientNet-B0 & Softmax & $95.71 \pm 0.36$ & $4.29 \pm 0.36$ & $94.92 \pm 0.52$ & $0.0584 \pm 0.1801$ \\
+EfficientNet-B0 & SVM (RBF) & $96.65 \pm 0.32$ & $3.35 \pm 0.32$ & $95.79 \pm 0.52$ & $0.0544 \pm 0.1636$ \\
+Custom CNN & KNN (k=5) & $96.92 \pm 0.33$ & $3.08 \pm 0.33$ & $96.62 \pm 0.39$ & $0.0450 \pm 0.1517$ \\
+Custom CNN & Random Forest & $96.04 \pm 0.35$ & $3.96 \pm 0.35$ & $95.24 \pm 0.55$ & $0.1682 \pm 0.2041$ \\
+MobileNetV2 & KNN (k=5) & $96.01 \pm 0.36$ & $3.99 \pm 0.36$ & $95.43 \pm 0.47$ & $0.0600 \pm 0.1732$ \\
+MobileNetV2 & Random Forest & $95.99 \pm 0.36$ & $4.01 \pm 0.36$ & $95.21 \pm 0.49$ & $0.2018 \pm 0.2097$ \\
+EfficientNet-B0 & KNN (k=5) & $96.23 \pm 0.33$ & $3.77 \pm 0.33$ & $95.51 \pm 0.48$ & $0.0549 \pm 0.1703$ \\
+EfficientNet-B0 & Random Forest & $95.67 \pm 0.36$ & $4.33 \pm 0.36$ & $94.95 \pm 0.50$ & $0.1890 \pm 0.2117$ \\
+\bottomrule
+\end{tabular}
+\end{table*}

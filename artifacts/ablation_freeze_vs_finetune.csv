@@ -1,0 +1,7 @@
+Backbone,Stage,Test Acc (%),Macro F1 (%),Trainable Params
+MobileNetV2,Stage 1: Head Only (Backbone Frozen),88.12,86.4,165839
+MobileNetV2,Stage 2: Full Fine-Tuning (Unfrozen),94.57,93.57,2429007
+MobileNetV2 + SVM,Penultimate Hybrid on Fine-Tuned Weights,97.0,96.27,0
+EfficientNet-B0,Stage 1: Head Only (Backbone Frozen),90.84,89.92,165839
+EfficientNet-B0,Stage 2: Full Fine-Tuning (Unfrozen),95.7,94.94,4220594
+EfficientNet-B0 + SVM,Penultimate Hybrid on Fine-Tuned Weights,96.61,95.92,0
