@@ -679,9 +679,15 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
             """)
 
     with b_tab11:
+        acc_line_path = fig_dir / "accuracy_line_graph_standalone.png"
+        acc_dual_path = fig_dir / "accuracy_line_graph_all_15_models.png"
+        if acc_line_path.exists():
+            st.image(str(acc_line_path), caption="Figure 18A: Dedicated Test Accuracy (%) Line Graph Comparison Across All 15 Models (Ranked)", use_column_width=True)
+        if acc_dual_path.exists():
+            st.image(str(acc_dual_path), caption="Figure 18B: Test Accuracy (%) Profile by Architecture and Decision Head Transition", use_column_width=True)
         fig17_path = fig_dir / "fig17_five_metric_line_comparison.png"
         if fig17_path.exists():
-            st.image(str(fig17_path), caption="Figure 17: Comprehensive 5-Metric Performance Profile & Line Graph Comparison Across All 15 Models (Accuracy, Precision, F1, Recall, Error Rate)", use_column_width=True)
+            st.image(str(fig17_path), caption="Figure 17: Multi-Metric Performance Trajectory Across All 15 Models (Accuracy, Precision, F1, Recall, Error Rate)", use_column_width=True)
         five_csv_path = ARTIFACTS_DIR / "five_metrics_comparison.csv"
         if five_csv_path.exists():
             st.markdown("#### **5-Metric Performance Benchmark (Accuracy, Precision, F1, Recall, Error Rate)**")
