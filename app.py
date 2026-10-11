@@ -551,7 +551,7 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
     Comparing 3 feature backbones (**Custom CNN**, **MobileNetV2**, **EfficientNet-B0**) paired with 5 decision heads (**Softmax**, **RBF SVM**, **KNN**, **Random Forest**, **Gaussian NB**).
     """)
     
-    b_tab1, b_tab2, b_tab3, b_tab4, b_tab5, b_tab6, b_tab7, b_tab8, b_tab9, b_tab10 = st.tabs([
+    b_tab1, b_tab2, b_tab3, b_tab4, b_tab5, b_tab6, b_tab7, b_tab8, b_tab9, b_tab10, b_tab11 = st.tabs([
         "📋 Full Master Table",
         "📊 4-Metric Grid (Fig 1)",
         "📈 Trajectory & Tri-Metric (Figs 2 & 3)",
@@ -561,7 +561,8 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
         "🧬 t-SNE & Crop Breakdown (Figs 9 & 10)",
         "📐 Statistical Error & SD (Fig 12)",
         "🧪 10-Seed Validation & Ablation (Figs 13, 14 & 15)",
-        "🎯 MRE & MMRE Benchmark (Fig 16)"
+        "🎯 MRE & MMRE Benchmark (Fig 16)",
+        "📈 5-Metric Line Graph Comparison (Fig 17)"
     ])
     
     metrics_path = ARTIFACTS_DIR / "all_15_models_metrics.csv"
@@ -676,5 +677,22 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
             > * **PRED(0.25):** Percentage of test predictions where $\\text{MRE}_i \\le 0.25$ (i.e. model predicted the true class with $\\ge 75\\%$ confidence).
             > * **Class MMRE:** $\\frac{1}{C} \\sum_{c=1}^C \\frac{|N_c - \\hat{N}_c|}{N_c} \\times 100\\%$, measuring disease prevalence estimation distortion across all 15 classes.
             """)
+
+    with b_tab11:
+        fig17_path = fig_dir / "fig17_five_metric_line_comparison.png"
+        if fig17_path.exists():
+            st.image(str(fig17_path), caption="Figure 17: Comprehensive 5-Metric Performance Profile & Line Graph Comparison Across All 15 Models (Accuracy, Precision, F1, Recall, Error Rate)", use_column_width=True)
+        five_csv_path = ARTIFACTS_DIR / "five_metrics_comparison.csv"
+        if five_csv_path.exists():
+            st.markdown("#### **5-Metric Performance Benchmark (Accuracy, Precision, F1, Recall, Error Rate)**")
+            five_df = pd.read_csv(five_csv_path)
+            st.dataframe(five_df, use_container_width=True)
+            st.download_button(
+                "⬇️ Download 5-Metric Comparison CSV",
+                five_df.to_csv(index=False),
+                file_name="phytoai_5_metrics_comparison.csv",
+                mime="text/csv",
+                key="dl_five_metrics"
+            )
 
 
