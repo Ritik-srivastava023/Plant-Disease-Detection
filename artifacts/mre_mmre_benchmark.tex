@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\caption{Comprehensive Magnitude of Relative Error (MRE) and Mean MRE (MMRE) Benchmark Across All 15 Plant Disease Classification Architectures ($N=3{,}096$ Test Images).}
+\label{tab:mre_mmre_benchmark}
+\centering
+\footnotesize
+\begin{tabular}{llccccccc}
+\toprule
+\textbf{Model Architecture} & \textbf{Classifier Head} & \textbf{Acc (\%)} & \textbf{Err (\%)} & \textbf{MMRE} & \textbf{SD\textsubscript{MRE}} & \textbf{MdMRE} & \textbf{PRED(0.25) (\%)} & \textbf{Class MMRE (\%)} \\
+\midrule
+Custom CNN + SVM & SVM & 97.32 & 2.68 & 0.0498 & 0.1487 & 0.0033 & 94.12 & 1.14 \\
+MobileNetV2 + SVM & SVM & 97.00 & 3.00 & 0.0513 & 0.1546 & 0.0026 & 93.83 & 2.67 \\
+Custom CNN + KNN & KNN & 96.93 & 3.07 & 0.0450 & 0.1517 & 0.0000 & 94.12 & 2.27 \\
+EfficientNet-B0 + SVM & SVM & 96.61 & 3.39 & 0.0533 & 0.1611 & 0.0023 & 93.64 & 2.70 \\
+EfficientNet-B0 + KNN & KNN & 96.22 & 3.78 & 0.0549 & 0.1703 & 0.0000 & 92.86 & 3.32 \\
+Custom CNN + RF & RF & 96.06 & 3.94 & 0.1739 & 0.2056 & 0.0913 & 73.93 & 3.09 \\
+MobileNetV2 + KNN & KNN & 96.03 & 3.97 & 0.0600 & 0.1732 & 0.0000 & 92.18 & 4.01 \\
+MobileNetV2 + RF & RF & 95.80 & 4.20 & 0.2070 & 0.2108 & 0.1342 & 67.38 & 4.04 \\
+EfficientNet-B0 + RF & RF & 95.80 & 4.20 & 0.1926 & 0.2123 & 0.1134 & 71.38 & 2.34 \\
+EfficientNet-B0 + Softmax & Softmax & 95.70 & 4.30 & 0.0584 & 0.1802 & 0.0003 & 92.57 & 4.62 \\
+MobileNetV2 + Softmax & Softmax & 94.57 & 5.43 & 0.0667 & 0.1971 & 0.0002 & 91.70 & 6.84 \\
+EfficientNet-B0 + NB & NB & 93.99 & 6.01 & 0.0599 & 0.2347 & 0.0000 & 93.83 & 3.02 \\
+MobileNetV2 + NB & NB & 93.70 & 6.30 & 0.0630 & 0.2408 & 0.0000 & 93.57 & 2.35 \\
+Custom CNN + NB & NB & 68.44 & 31.56 & 0.3148 & 0.4612 & 0.0000 & 68.15 & 123.37 \\
+Custom CNN + Softmax & Softmax & 68.12 & 31.88 & 0.3503 & 0.4144 & 0.0810 & 59.30 & 72.27 \\
+\bottomrule
+\end{tabular}
+\end{table*}

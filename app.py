@@ -551,7 +551,7 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
     Comparing 3 feature backbones (**Custom CNN**, **MobileNetV2**, **EfficientNet-B0**) paired with 5 decision heads (**Softmax**, **RBF SVM**, **KNN**, **Random Forest**, **Gaussian NB**).
     """)
     
-    b_tab1, b_tab2, b_tab3, b_tab4, b_tab5, b_tab6, b_tab7, b_tab8, b_tab9 = st.tabs([
+    b_tab1, b_tab2, b_tab3, b_tab4, b_tab5, b_tab6, b_tab7, b_tab8, b_tab9, b_tab10 = st.tabs([
         "📋 Full Master Table",
         "📊 4-Metric Grid (Fig 1)",
         "📈 Trajectory & Tri-Metric (Figs 2 & 3)",
@@ -560,7 +560,8 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
         "📉 ROC & PR Curves (Fig 8)",
         "🧬 t-SNE & Crop Breakdown (Figs 9 & 10)",
         "📐 Statistical Error & SD (Fig 12)",
-        "🧪 10-Seed Validation & Ablation (Figs 13 & 14)"
+        "🧪 10-Seed Validation & Ablation (Figs 13, 14 & 15)",
+        "🎯 MRE & MMRE Benchmark (Fig 16)"
     ])
     
     metrics_path = ARTIFACTS_DIR / "all_15_models_metrics.csv"
@@ -651,5 +652,29 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
         if hypo_path.exists():
             st.markdown("#### **Hypothesis Testing Results (Paired t-test, Wilcoxon, Cohen's d)**")
             st.dataframe(pd.read_csv(hypo_path), use_container_width=True)
+
+    with b_tab10:
+        fig16_path = fig_dir / "fig16_mre_mmre_all_15_models.png"
+        if fig16_path.exists():
+            st.image(str(fig16_path), caption="Figure 16: Magnitude of Relative Error (MRE) & MMRE Architectural Benchmark Across All 15 Models", use_column_width=True)
+        mre_csv_path = ARTIFACTS_DIR / "mre_mmre_benchmark.csv"
+        if mre_csv_path.exists():
+            st.markdown("#### **All 15 Models: Magnitude of Relative Error (MRE) & MMRE Benchmark**")
+            mre_df = pd.read_csv(mre_csv_path)
+            st.dataframe(mre_df, use_container_width=True)
+            st.download_button(
+                "⬇️ Download All 15 Models MRE & MMRE Benchmark CSV",
+                mre_df.to_csv(index=False),
+                file_name="phytoai_15_models_mre_mmre_benchmark.csv",
+                mime="text/csv",
+                key="dl_mre_mmre_metrics"
+            )
+            st.markdown("""
+            > **MRE & MMRE Theoretical Formulation:**
+            > * **Probabilistic MRE (Sample-Level):** $\\text{MRE}_i = \\frac{|1.0 - \\hat{p}_i|}{1.0} = 1.0 - \\hat{p}_i$, where $\\hat{p}_i$ is the posterior probability assigned to the ground-truth disease class.
+            > * **MMRE:** $\\text{MMRE} = \\frac{1}{N} \\sum_{i=1}^N \\text{MRE}_i = \\frac{1}{N} \\sum_{i=1}^N (1.0 - \\hat{p}_i)$.
+            > * **PRED(0.25):** Percentage of test predictions where $\\text{MRE}_i \\le 0.25$ (i.e. model predicted the true class with $\\ge 75\\%$ confidence).
+            > * **Class MMRE:** $\\frac{1}{C} \\sum_{c=1}^C \\frac{|N_c - \\hat{N}_c|}{N_c} \\times 100\\%$, measuring disease prevalence estimation distortion across all 15 classes.
+            """)
 
 
