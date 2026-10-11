@@ -207,3 +207,4 @@ print("ALL 15 MODELS ACCURACY RANKING TABLE")
 print("=" * 80)
 print(acc_summary[["Rank", "Model", "Backbone", "Classifier", "Test Acc (%)"]].to_string(index=False))
 print("=" * 80)
+

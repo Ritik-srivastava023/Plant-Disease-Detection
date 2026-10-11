@@ -679,18 +679,52 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
             """)
 
     with b_tab11:
-        acc_line_path = fig_dir / "accuracy_line_graph_standalone.png"
-        acc_dual_path = fig_dir / "accuracy_line_graph_all_15_models.png"
-        if acc_line_path.exists():
-            st.image(str(acc_line_path), caption="Figure 18A: Dedicated Test Accuracy (%) Line Graph Comparison Across All 15 Models (Ranked)", use_column_width=True)
-        if acc_dual_path.exists():
-            st.image(str(acc_dual_path), caption="Figure 18B: Test Accuracy (%) Profile by Architecture and Decision Head Transition", use_column_width=True)
-        fig17_path = fig_dir / "fig17_five_metric_line_comparison.png"
-        if fig17_path.exists():
-            st.image(str(fig17_path), caption="Figure 17: Multi-Metric Performance Trajectory Across All 15 Models (Accuracy, Precision, F1, Recall, Error Rate)", use_column_width=True)
+        st.markdown("### 📈 Dedicated Line Graph Suite (All 15 Models Evaluated on Untouched Test Split)")
+        m_choice = st.radio(
+            "Select Metric Line Graph to Display:",
+            [
+                "🎯 1. Accuracy",
+                "🎯 2. Precision",
+                "🎯 3. F1-Score",
+                "🎯 4. Recall",
+                "🎯 5. Error Rate",
+                "📊 Master 5-Panel Grid",
+                "📈 Multi-Metric Overlay (Fig 17)"
+            ],
+            horizontal=True
+        )
+        if "Accuracy" in m_choice:
+            acc_dual_path = fig_dir / "accuracy_line_graph_all_15_models.png"
+            if acc_dual_path.exists():
+                st.image(str(acc_dual_path), caption="Figure 18A: Classification Test Accuracy (%) Line Graph Comparison Across All 15 Models", use_column_width=True)
+        elif "Precision" in m_choice:
+            prec_path = fig_dir / "precision_line_graph_all_15_models.png"
+            if prec_path.exists():
+                st.image(str(prec_path), caption="Figure 18B: Macro-Averaged Precision (%) Line Graph Comparison Across All 15 Models", use_column_width=True)
+        elif "F1-Score" in m_choice:
+            f1_path = fig_dir / "f1_score_line_graph_all_15_models.png"
+            if f1_path.exists():
+                st.image(str(f1_path), caption="Figure 18C: Macro-Averaged F1-Score (%) Line Graph Comparison Across All 15 Models", use_column_width=True)
+        elif "Recall" in m_choice:
+            rec_path = fig_dir / "recall_line_graph_all_15_models.png"
+            if rec_path.exists():
+                st.image(str(rec_path), caption="Figure 18D: Macro-Averaged Recall / Sensitivity (%) Line Graph Comparison Across All 15 Models", use_column_width=True)
+        elif "Error Rate" in m_choice:
+            err_path = fig_dir / "error_rate_line_graph_all_15_models.png"
+            if err_path.exists():
+                st.image(str(err_path), caption="Figure 18E: Classification Error Rate (%) Line Graph Comparison Across All 15 Models", use_column_width=True)
+        elif "Master 5-Panel" in m_choice:
+            grid_path = fig_dir / "all_5_individual_line_graphs_grid.png"
+            if grid_path.exists():
+                st.image(str(grid_path), caption="Figure 18: Master 5-Panel Composite Line Graph Suite Across All 15 Models", use_column_width=True)
+        elif "Multi-Metric" in m_choice:
+            fig17_path = fig_dir / "fig17_five_metric_line_comparison.png"
+            if fig17_path.exists():
+                st.image(str(fig17_path), caption="Figure 17: Multi-Metric Performance Trajectory Across All 15 Models", use_column_width=True)
+
         five_csv_path = ARTIFACTS_DIR / "five_metrics_comparison.csv"
         if five_csv_path.exists():
-            st.markdown("#### **5-Metric Performance Benchmark (Accuracy, Precision, F1, Recall, Error Rate)**")
+            st.markdown("#### **5-Metric Performance Benchmark Table**")
             five_df = pd.read_csv(five_csv_path)
             st.dataframe(five_df, use_container_width=True)
             st.download_button(
@@ -698,7 +732,7 @@ with st.expander("📊 Academic Benchmark & Graphical Analysis (15 Models, 14 Fi
                 five_df.to_csv(index=False),
                 file_name="phytoai_5_metrics_comparison.csv",
                 mime="text/csv",
-                key="dl_five_metrics"
+                key="dl_five_metrics_sub"
             )
 
 
